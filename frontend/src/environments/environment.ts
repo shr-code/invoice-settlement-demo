@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: process.env['NG_APP_API_URL']  // deployed backend
+  apiBaseUrl: 'https://invoice-settlement-demo.onrender.com'  // deployed backend
 };
