@@ -24,9 +24,9 @@ services:
       - redis
     ports:
       - "8080:8080"
-      - "5678:5678"  # Port for debugger
-    volumes:
-    - ./services/payments:/app   # Mount local code inside container
+      # - "5678:5678"  # Port for debugger
+    # volumes:
+    # - ./services/payments:/app   # Mount local code inside container
 
 volumes:
   pgdata:
