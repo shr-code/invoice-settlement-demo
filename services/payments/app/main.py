@@ -4,7 +4,8 @@ from .routers import invoices, payments
 from fastapi.middleware.cors import CORSMiddleware
 import os 
 
-load_dotenv(".services/payments/.env.dev")
+# load_dotenv(".services/payments/.env.dev") #for local development
+
 origins = os.getenv("FRONTEND_ORIGINS", "http://localhost:4200").split(",")
 def create_app() -> FastAPI:
     app = FastAPI(title="Payments Service", version="1.0.0")
