@@ -1,16 +1,13 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from .routers import invoices, payments
 from fastapi.middleware.cors import CORSMiddleware
+import os 
 
-origins = [
-    "http://localhost:4200",               # Angular dev server
-    "https://your-vercel-frontend.vercel.app"  # deployed frontend
-]
-
+load_dotenv(".services/payments/.env.dev")
+origins = os.getenv("FRONTEND_ORIGINS", "http://localhost:4200").split(",")
 def create_app() -> FastAPI:
     app = FastAPI(title="Payments Service", version="1.0.0")
-    app.include_router(invoices.router, prefix="/invoices", tags=["invoices"])
-    app.include_router(payments.router, prefix="/payments", tags=["payments"])
     app.add_middleware(
         CORSMiddleware,
         allow_origins=origins,
@@ -18,6 +15,8 @@ def create_app() -> FastAPI:
         allow_methods=["*"],
         allow_headers=["*"],
     )
+    app.include_router(invoices.router, prefix="/invoices", tags=["invoices"])
+    app.include_router(payments.router, prefix="/payments", tags=["payments"])
     return app
 
 app = create_app()

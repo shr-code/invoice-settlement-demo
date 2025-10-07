@@ -12,3 +12,8 @@ class InvoiceCreate(BaseModel):
 def create_invoice(payload: InvoiceCreate):
     # TODO: call service layer & DB
     return {"id": 1, "message": "Invoice created", **payload.dict()}
+
+@router.get("/")
+def list_invoices():
+    # TODO: call service layer & DB
+    return [{"id": 1, "amount": 100, "description": "Test Invoice"}]
