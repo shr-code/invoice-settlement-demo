@@ -6,7 +6,7 @@ import os
 from db.base import Base
 from db.session import engine
 
-load_dotenv() #for local development
+# load_dotenv() #for local development
 
 Base.metadata.create_all(bind=engine)
 
