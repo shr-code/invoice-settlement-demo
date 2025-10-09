@@ -37,7 +37,11 @@ export class AppComponent implements OnInit {
   }
 
   addInvoice() {
-    const data = { id: 1, amount: 100, description: 'Test Invoice' };
+    const data = {
+      user_id: 2,
+      amount: 50,
+      status: 'Pending',
+    };
     this.api.createInvoice(data).subscribe(res => this.loadInvoices());
   }
 

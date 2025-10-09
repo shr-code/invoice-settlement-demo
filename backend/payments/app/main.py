@@ -1,10 +1,14 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from .routers import invoices, payments
+from routers import invoices, payments
 from fastapi.middleware.cors import CORSMiddleware
 import os 
+from db.base import Base
+from db.session import engine
 
-# load_dotenv(".services/payments/.env.dev") #for local development
+load_dotenv() #for local development
+
+Base.metadata.create_all(bind=engine)
 
 origins = os.getenv("FRONTEND_ORIGINS", "http://localhost:4200").split(",")
 def create_app() -> FastAPI:
