@@ -14,7 +14,7 @@
             },
             "pathMappings": [
                 {
-                    "localRoot": "${workspaceFolder}/services/payments",  // path to your code on host
+                    "localRoot": "${workspaceFolder}/backend/payments/app",  // path to your code on host
                     "remoteRoot": "/app"   // whatever your WORKDIR is in Dockerfile
                 }
             ]
