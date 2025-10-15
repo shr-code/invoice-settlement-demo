@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { InvoiceComponent } from './components/invoice/invoice.component';
-import { PaymentComponent } from './components/payment/payment.component';
 
 export const routes: Routes = [{
   path: '',
@@ -11,10 +10,10 @@ export const routes: Routes = [{
   component: InvoiceComponent
 }, {
   path: 'payment',
-  component: PaymentComponent
+  loadComponent: () => import('./components/payment/payment.component').then(m => m.PaymentComponent)
 }, {
   path: 'receipt',
-  component: InvoiceComponent // Placeholder for future ReceiptComponent
+  loadComponent: () => import('./components/receipt/receipt.component').then(m => m.ReceiptComponent)
 }, {
   path: '**',
   redirectTo: 'invoice' //fallback to invoice for unknown paths
