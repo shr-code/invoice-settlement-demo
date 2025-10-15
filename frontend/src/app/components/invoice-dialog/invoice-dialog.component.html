@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>Create Invoice</h2>
+<mat-dialog-content>
+  <p>Please fill in the details below to create a new invoice.</p>
+</mat-dialog-content>
+<form [formGroup]="invoiceForm" (ngSubmit)="submit()">
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>User ID</mat-label>
+      <input matInput type="number" formControlName="user_id">
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" formControlName="amount">
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-content>
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="Pending">Pending</mat-option>
+        <mat-option value="Paid">Paid</mat-option>
+        <mat-option value="Partial">Partial</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="actions">
+    <button mat-raised-button color="primary" type="submit" [disabled]="invoiceForm.invalid">Submit</button>
+    <button mat-button mat-dialog-close type="button" (click)="close()">Cancel</button>
+  </mat-dialog-actions>
+</form>

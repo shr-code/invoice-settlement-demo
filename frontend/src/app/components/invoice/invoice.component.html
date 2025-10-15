@@ -1,0 +1,21 @@
+
+  <mat-card-content>
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="button" (click)="openInvoiceDialog()">Create Invoice</button>
+    </div>
+  </mat-card-content>
+  
+  <div class="grid-container">
+    <ag-grid-angular
+    style=" height: 300px;"
+    class="ag-theme-alpine"
+    [rowData]="invoices"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [animateRows]="true"
+    [rowSelection]="'multiple'"
+    [pagination]="true"
+    [paginationPageSize]="10"
+    [paginationPageSizeSelector]="paginationPageSizeSelector"
+    [theme]="theme"/>
+</div>
