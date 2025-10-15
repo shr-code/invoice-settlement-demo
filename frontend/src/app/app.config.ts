@@ -8,8 +8,6 @@ export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideHttpClient()]
 };
 
-4
-
 // if you are facing  NullInjectorError: R3InjectorError(AppModule)[FireserviceService -> AngularFireDatabase -> AngularFireDatabase -> AngularFireDatabase]: 
   // NullInjectorError: No provider in angular 17 version just remove all HTTP client module imports and go to appconfig.ts file inside app file
 

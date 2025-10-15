@@ -1,53 +1,34 @@
-import { Component,inject,OnInit } from '@angular/core';
-// import { RouterOutlet } from '@angular/router';
-import { ApiService } from './services/api.service';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { RouterModule } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+
 @Component({
   selector: 'app-root',
-  imports: [ CommonModule],
+  imports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    RouterOutlet,
+    RouterModule,
+    MatButtonToggleModule,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-  title = 'frontend';
+export class AppComponent {
+  currentRoute = '/invoice';
 
-  invoices: any[] = [];
-  payments: any[] = [];
-
-  constructor() {}
-  api = inject(ApiService)
-
-  ngOnInit() {
-    this.loadInvoices();
-    this.loadPayments();
+  constructor(private router: Router) {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        this.currentRoute = event.url; // updates selected toggle automatically
+      });
   }
-
-  loadInvoices() {
-    this.api.getInvoices().subscribe(res => {
-      console.log('Invoices loaded:', res);
-      this.invoices = res;
-    });
-  }
-
-  loadPayments() {
-    this.api.getPayments().subscribe(res => {
-      console.log('Payments loaded:', res);
-      this.payments = res;
-    });
-  }
-
-  addInvoice() {
-    const data = {
-      user_id: 2,
-      amount: 50,
-      status: 'Pending',
-    };
-    this.api.createInvoice(data).subscribe(res => this.loadInvoices());
-  }
-
-  addPayment() {
-    const data = { invoice_id: 1, amount: 100, payment_reference: 'PAY123' };
-    this.api.createPayment(data).subscribe(res => this.loadPayments());
-  }
-  
 }

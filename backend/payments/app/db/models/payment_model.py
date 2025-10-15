@@ -10,6 +10,6 @@ class Payment(Base):
     invoice_id = Column(Integer, ForeignKey("invoices.id"), nullable=False)
     amount = Column(Float, nullable=False)
     status = Column(String, nullable=False)
-    payment__reference = Column(String, unique=True, nullable=False)
+    payment_reference = Column(String, unique=True, nullable=False)
     created_at = Column(DateTime, default=datetime.utcnow)
-    # invoice = relationship("Invoice", back_populates="payments")
+    invoice = relationship("Invoice", back_populates="payments")

@@ -1,15 +1,18 @@
-<h1>Invoice Settlement Demo</h1>
+<mat-toolbar color="primary">
+  <span>Invoice Management</span>
+  <span class="spacer"></span>
+  <!--  add other elements here, like navigation links or icons -->
+  <mat-button-toggle-group [value]="currentRoute" hideSingleSelectionIndicator="true">
+    <mat-button-toggle value="/invoice" [routerLink]="'/invoice'">Invoices</mat-button-toggle>
+    <mat-button-toggle value="/payment" [routerLink]="'/payment'">Payments</mat-button-toggle>
+    <mat-button-toggle value="/receipt" [routerLink]="'/receipt'">Receipts</mat-button-toggle>
+  </mat-button-toggle-group>
 
-<button (click)="addInvoice()">Create Invoice</button>
-<ul>
-  <li *ngFor="let inv of invoices">
-    Invoice {{inv.id}} - Amount: {{inv.amount}} - Status: {{inv.status}}
-  </li>
-</ul>
+  <button mat-icon-button aria-label="User Account">
+    <mat-icon>account_circle</mat-icon>
+  </button>
 
-<button (click)="addPayment()">Create Payment</button>
-<ul>
-  <li *ngFor="let pay of payments">
-    Payment {{pay.id}} - Amount: {{pay.amount}} - Status: {{pay.status}}
-  </li>
-</ul>
+</mat-toolbar>
+<div class="content-container">
+  <router-outlet></router-outlet>
+</div>
